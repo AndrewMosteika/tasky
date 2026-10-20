@@ -1,8 +1,8 @@
-require relative "lib/user"
-require relative "lib/authorizer"
+require_relative "lib/user"
+require_relative "lib/authorizer"
 
 ana = User.new("Ana", :admin)
-vera = user.new("Vera", :viewer)
+vera = User.new("Vera", :viewer)
 authorizer = Authorizer.new
 
 puts authorizer.can?(ana, :delete, :task)
