@@ -17,5 +17,10 @@ def can?(role, action, resource)
     
     actions.include?(action)
 end
-
+puts can?(:viewer, :read, :task)
+puts can?(:viewer, :delete, :task)
+puts can?(:member, :update, :task)
+puts can?(:member, :update, :project)
+puts can?(:intern, :read, :task)      
+puts can?(:owner, :read, :invoice)
 
