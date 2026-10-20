@@ -1,6 +1,6 @@
 # What each role can do, per resource
 PERMISSIONS = {
-  viewer: { project: [:read], task: [:read] },
+  viewer: { project: [:read], task: [:read]},
   member: { project: [:read], task: [:read, :create, :update] },
   admin: {
     project: [:read, :create, :update],
@@ -21,6 +21,6 @@ puts can?(:viewer, :read, :task)
 puts can?(:viewer, :delete, :task)
 puts can?(:member, :update, :task)
 puts can?(:member, :update, :project)
-puts can?(:intern, :read, :task)      
+puts can?(:intern, :read, :task)
 puts can?(:owner, :read, :invoice)
 
