@@ -18,5 +18,3 @@ class Authorizer
     actions.include?(action)
   end
 end
-21
-
