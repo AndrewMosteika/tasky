@@ -5,4 +5,3 @@ class User
         @role = role
     end
 end
-
