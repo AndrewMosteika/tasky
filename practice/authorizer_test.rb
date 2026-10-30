@@ -37,4 +37,3 @@ class AuthorizerTest < Minitest::Test
     assert @authorizer.can?(aragorn, :update, :project)
   end
 end
-
