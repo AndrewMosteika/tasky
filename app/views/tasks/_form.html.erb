@@ -1,0 +1,27 @@
+<%= form_with model: [ project, task ] do |form| %>
+  <% if task.errors.any? %>
+    <ul>
+      <% task.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <div>
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+  <div>
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div>
+  <div>
+    <%= form.label :status %>
+    <%= form.select :status, Task.statuses.keys.map { |s| [ s.humanize, s ] } %>
+  </div>
+  <div>
+    <%= form.label :due_on, "Due date" %>
+    <%= form.date_field :due_on %>
+  </div>
+  <%= form.submit %>
+<% end %>
