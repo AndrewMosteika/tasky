@@ -1,0 +1,5 @@
+<h1><%= @project.name %></h1>
+<p><%= @project.description %></p>
+<%= link_to "Edit", edit_project_path(@project) %>
+<%= button_to "Delete", @project, method: :delete,
+      form: { data: { turbo_confirm: "Delete this project?" } } %>
