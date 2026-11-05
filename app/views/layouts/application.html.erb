@@ -24,6 +24,11 @@
   </head>
 
   <body>
+    <% if authenticated? %>
+      <%= link_to "Projects", root_path %>
+      <%= Current.user.email_address %>
+      <%= button_to "Sign out", session_path, method: :delete %>
+    <% end %>
     <p><%= notice %></p>
     <p><%= alert %></p>
     <%= yield %>
