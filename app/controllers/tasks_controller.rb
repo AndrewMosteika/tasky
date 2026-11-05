@@ -11,6 +11,7 @@ class TasksController < ApplicationController
 
   def create
     @task = @project.tasks.new(task_params)
+    @task.creator = Current.user
     if @task.save
       redirect_to @project, notice: "Task created."
     else
