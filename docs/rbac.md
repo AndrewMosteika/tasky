@@ -6,6 +6,8 @@
 | Owner        | read, update, delete         | read, create, update, delete | read; manage everyone            |
 | Not a member | nothing                      | nothing                      | nothing                          |
 
+Note: Creating a project isn't a role permission: any signed-in user can create one and becomes its Owner.
+
 Rules:
 1. Deny access by default. 
 2. No self promotion i.e. an admin can only add and remove members and 
