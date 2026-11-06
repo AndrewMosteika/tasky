@@ -1,10 +1,10 @@
 # What each project role may do. Anything not listed is denied.
 module Permissions
   MATRIX = {
-    "viewer" => { 
-      project: %i[read], 
-      task: %i[read], 
-      members: %i[read] 
+    "viewer" => {
+      project: %i[read],
+      task: %i[read],
+      members: %i[read]
     },
     "member" => {
       project: %i[read],
