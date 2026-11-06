@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_11_05_195456) do
+ActiveRecord::Schema[8.1].define(version: 2026_11_06_180827) do
+  create_table "memberships", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "project_id", null: false
+    t.integer "role"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_memberships_on_project_id"
+    t.index ["user_id", "project_id"], name: "index_memberships_on_user_id_and_project_id", unique: true
+    t.index ["user_id"], name: "index_memberships_on_user_id"
+  end
+
   create_table "projects", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -48,6 +59,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_05_195456) do
     t.index ["email_address"], name: "index_users_on_email_address", unique: true
   end
 
+  add_foreign_key "memberships", "projects"
+  add_foreign_key "memberships", "users"
   add_foreign_key "sessions", "users"
   add_foreign_key "tasks", "projects"
   add_foreign_key "tasks", "users", column: "creator_id"
