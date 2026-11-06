@@ -882,10 +882,10 @@ Add rules to `app/models/user.rb`:
 
 ```ruby
 validates :email_address, presence: true, uniqueness: true
-validates :password, length: { minimum: 12 }, allow_nil: true
+validates :password, length: { minimum: 10 }, allow_nil: true
 ```
 
-The new 12-character minimum breaks one generated test: in `test/controllers/passwords_controller_test.rb`, the update test sets the password to `"new"`. Change both of its `"new"` values to `"new-password-123"`.
+The new 10-character minimum breaks one generated test: in `test/controllers/passwords_controller_test.rb`, the update test sets the password to `"new"`. Change both of its `"new"` values to `"new-password-123"`.
 
 `app/views/registrations/new.html.erb`:
 
