@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_11_09_154612) do
+ActiveRecord::Schema[8.1].define(version: 2026_11_09_160058) do
   create_table "memberships", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "project_id", null: false
@@ -47,6 +47,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_09_154612) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "creator_id", null: false
+    t.integer "assignee_id"
+    t.index ["assignee_id"], name: "index_tasks_on_assignee_id"
     t.index ["creator_id"], name: "index_tasks_on_creator_id"
     t.index ["project_id"], name: "index_tasks_on_project_id"
   end
@@ -63,5 +65,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_09_154612) do
   add_foreign_key "memberships", "users"
   add_foreign_key "sessions", "users"
   add_foreign_key "tasks", "projects"
+  add_foreign_key "tasks", "users", column: "assignee_id"
   add_foreign_key "tasks", "users", column: "creator_id"
 end

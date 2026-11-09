@@ -47,6 +47,6 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.expect(task: [ :title, :description, :status, :due_on ])
+    params.expect(task: [ :title, :description, :status, :due_on, :assignee_id ])
   end
 end
