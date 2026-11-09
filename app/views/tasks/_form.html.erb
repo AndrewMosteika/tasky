@@ -23,5 +23,11 @@
     <%= form.label :due_on, "Due date" %>
     <%= form.date_field :due_on %>
   </div>
+  <div>
+  <%= form.label :assignee_id, "Assigned to" %>
+  <%= form.collection_select :assignee_id, project.users.order(:email_address),
+        :id, :email_address, include_blank: "Nobody" %>
+  </div>
+  <%= @task.assignee&.email_address || "Nobody" %>
   <%= form.submit %>
 <% end %>

@@ -1,0 +1,10 @@
+<h1>My tasks</h1>
+<ul>
+  <% @tasks.each do |task| %>
+    <li>
+      <%= link_to task.title, [ task.project, task ] %>
+      (<%= task.project.name %>) — <%= task.status.humanize %>,
+      due <%= task.due_on || "no date" %>
+    </li>
+  <% end %>
+</ul>
