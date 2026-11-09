@@ -6,12 +6,13 @@ class TasksController < ApplicationController
   end
 
   def new
-    @task = @project.tasks.new
+    @task = authorize @project.tasks.new
   end
 
   def create
     @task = @project.tasks.new(task_params)
     @task.creator = Current.user
+    authorize @task
     if @task.save
       redirect_to @project, notice: "Task created."
     else
@@ -38,11 +39,11 @@ class TasksController < ApplicationController
   private
 
   def set_project
-    @project = Project.find(params[:project_id])
+    @project = policy_scope(Project).find(params[:project_id])
   end
 
   def set_task
-    @task = @project.tasks.find(params[:id])
+    @task = authorize @project.tasks.find(params[:id])
   end
 
   def task_params
