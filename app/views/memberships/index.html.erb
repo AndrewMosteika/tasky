@@ -1,0 +1,34 @@
+<h1>Members of <%= @project.name %></h1>
+<% roles = policy(@project).assign_any_role? ? Membership.roles.keys : MembershipPolicy::LOWER_ROLES %>
+
+<table>
+  <% @memberships.each do |membership| %>
+    <tr>
+      <td><%= membership.user.email_address %></td>
+      <td>
+        <% if policy(membership).update? %>
+          <%= form_with model: [ @project, membership ] do |form| %>
+            <%= form.select :role, roles %>
+            <%= form.submit "Change role" %>
+          <% end %>
+        <% else %>
+          <%= membership.role.humanize %>
+        <% end %>
+      </td>
+      <td>
+        <% if policy(membership).destroy? %>
+          <%= button_to "Remove", [ @project, membership ], method: :delete %>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<% if policy(@project).manage_members? %>
+  <h2>Add a member</h2>
+  <%= form_with url: project_memberships_path(@project) do |form| %>
+    <%= form.email_field :email_address, placeholder: "their email", required: true %>
+    <%= form.select :role, roles %>
+    <%= form.submit "Add" %>
+  <% end %>
+<% end %>
