@@ -15,7 +15,7 @@ class Membership < ApplicationRecord
   end
 
   def project_keeps_an_owner
-    return unless owner? && role_was == "owner" && last_owner?
+    return unless role_changed? && role_was == "owner" && last_owner?
 
     errors.add(:role, "can't change: a project needs at least one owner")
   end
