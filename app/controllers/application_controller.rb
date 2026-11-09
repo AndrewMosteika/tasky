@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 
   after_action :verify_pundit_authorization
 
-  rescue_from Pundit::NotAuthorizedError, with :not_authorized
+  rescue_from Pundit::NotAuthorizedError, with: :not_authorized
 
   private
 

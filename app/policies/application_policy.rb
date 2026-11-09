@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class ApplicationPolicy
   attr_reader :user, :record
 
@@ -50,7 +48,7 @@ class ApplicationPolicy
 
     attr_reader :user, :scope
   end
-  
+
   private
 
   def role_allows?(action, resource, project)

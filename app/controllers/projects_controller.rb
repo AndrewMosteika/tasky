@@ -2,18 +2,18 @@ class ProjectsController < ApplicationController
   before_action :set_project, only: %i[show edit update destroy]
 
   def index
-    @projects = Project.order(:name)
+    @projects = policy_scope(Project).order(:name)
   end
 
   def show
   end
 
   def new
-    @project = Project.new
+    @project = authorize Project.new
   end
 
   def create
-    @project = Project.new(project_params)
+    @project = authorize whatsProject.new(project_params)
     @project.memberships.build(user: Current.user, role: :owner)
     if @project.save
       redirect_to @project, notice: "Project created."
@@ -41,7 +41,7 @@ class ProjectsController < ApplicationController
   private
 
   def set_project
-    @project = Project.find(params[:id])
+    @project = authorize policy_scope(Project).find(params[:id])
   end
 
   def project_params
