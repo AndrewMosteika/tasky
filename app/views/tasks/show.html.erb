@@ -1,12 +1,12 @@
 <h1><%= @task.title %></h1>
 <p><%= @task.description %></p>
 <p>Status: <%= @task.status.humanize %> · Due: <%= @task.due_on || "no date" %></p>
-<p>Assigned to: <%= @task.status.humanize %> · Due: <%= @task.due_on || "no date" %></p>
+<p>Assigned to: <%= @task.assignee&.email_address || "Nobody" %></p>
 <% if policy(@task).update? %>
   <%= link_to "Edit", edit_project_task_path(@project, @task) %>
 <% end %>
 <% if policy(@task).destroy? %>
-  <%= button_to "Delete", [@project, @task ], method: :delete,
-    form: { data: {turbo_confirm: "Delete this task?"} } %>
+  <%= button_to "Delete", [ @project, @task ], method: :delete,
+        form: { data: { turbo_confirm: "Delete this task?" } } %>
 <% end %>
 <%= link_to "Back to #{@project.name}", @project %>
