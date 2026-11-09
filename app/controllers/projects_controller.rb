@@ -13,7 +13,7 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    @project = authorize whatsProject.new(project_params)
+    @project = authorize Project.new(project_params)
     @project.memberships.build(user: Current.user, role: :owner)
     if @project.save
       redirect_to @project, notice: "Project created."
