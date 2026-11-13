@@ -1,9 +1,6 @@
 <% password_digest = BCrypt::Password.create("password") %>
-
-one:
-  email_address: one@example.com
+<% %w[owner admin member viewer outsider].each do |name| %>
+<%= name %>
+  email_address: <%= name %>@tasky.test
   password_digest: <%= password_digest %>
-
-two:
-  email_address: two@example.com
-  password_digest: <%= password_digest %>
+<% end %>
