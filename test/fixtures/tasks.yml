@@ -1,17 +1,9 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+homepage:
+  project: relaunch
+  title: Homepage copy
+  creator: owner
 
-one:
-  project: one
-  creator: one
-  title: MyString
-  description: MyText
-  status: 1
-  due_on: 2026-11-02
-
-two:
-  project: two
-  creator: one
-  title: MyString
-  description: MyText
-  status: 1
-  due_on: 2026-11-02
+side_task:
+  project: side
+  title: Side task
+  creator: outsider

@@ -4,4 +4,7 @@
   project: relaunch
   role: <%= role %>
 <% end %>
-outsider_side
+outsider_side:
+  user: outsider
+  project: side
+  role: owner
