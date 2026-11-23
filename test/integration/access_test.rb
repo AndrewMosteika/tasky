@@ -50,4 +50,20 @@ class AccessTest < ActionDispatch::IntegrationTest
     post projects_path, params: { project: { name: "New thing" } }
     assert_equal "owner", users(:outsider).role_in(Project.last)
   end
+
+  test "an admin cannot remove the owner through the members page" do
+    sign_in_as users(:admin)
+    assert_no_difference "Membership.count" do
+      delete project_membership_path(@project, memberships(:owner))
+    end
+    assert_redirected_to root_path
+  end
+
+  test "a member cannot delete a task" do
+    sign_in_as users(:member)
+    assert_no_difference "Task.count" do
+      delete project_task_path(@project, tasks(:homepage))
+    end
+    assert_redirected_to root_path
+  end
 end
